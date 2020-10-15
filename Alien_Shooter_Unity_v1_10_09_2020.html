@@ -912,40 +912,17 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 				if(isStartGame&&bossGroup.children.length<=0&&!isEndgame&&isTutorial2){
 					isEndgame=true;
 					sound_bg.stop();
-					ship.body.collideWorldBounds = false;
-					var ship_tween = game.add.tween(ship.body).to({y:-500},1000,"Linear",true);
-
-					for(var i=0;i<enemyGroup.children.length;i++){
-						if(enemyGroup.children[i]){
-							enemyGroup.children[i].destroy(true);
-						}
-					}
-
-
-					    ship_tween.onComplete.add(function(){
-						ship.body.visible=false;
-						enemyGroup.visible = false;
-						endgame();
-						isEndTweenShip=true;
-					}, this);
-				}
-
-
-
-
-				if(ship){
-					// if(ship.body.x>game.width-ship.body.sprite.width/2){
-					// 	ship.body.x = game.width-ship.body.sprite.width/2;
-					// }
-					// if(ship.body.x<ship.body.sprite.width/2){
-					// 	ship.body.x = ship.body.sprite.width/2;
-					// }
-
-					// if(ship.body.y>game.height-ship.body.sprite.height/2){
-					// 	ship.body.y = game.height-ship.body.sprite.height/2;
-					// }
 					
+
+
+
+						endgame();
+						
 				}
+
+
+
+
 
 			},
 			render(){
@@ -999,191 +976,14 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 
 			var selectedShip = "" , btnShip1,btnShip2,btnShip3;
 			var tail1,tail2,tail3,txt_choose_aircraft;
-			function createSelectShip(){
-				console.log("createSelectShip");
-				if(txt_choose_aircraft){
-					txt_choose_aircraft.destroy(true);
-				}
 
-
-				if(btnShip1){
-					btnShip1.destroy(true);
-				}
-
-				if(btnShip2){
-					btnShip2.destroy(true);
-				}
-
-				if(btnShip3){
-					btnShip3.destroy(true);
-				}
-
-				if(checkIsLandScape()){
-					txt_choose_aircraft = createSprite("txt_choose_aircraft",0.5,game.width/4);
-				}else{
-					txt_choose_aircraft = createSprite("txt_choose_aircraft",0.5,game.width/1.2);
-				}
-				txt_choose_aircraft.reset(game.width/2,game.height*0.2);
-
-				txt_choose_aircraft.tween = game.add.tween(txt_choose_aircraft).to({alpha:0},500,"Linear",true,0,-1,true);
-
-				if(checkIsLandScape()){
-					tail1 = createSprite("ship_tail",0.5,game.width/80);
-					tail1.animations.add("idle",[0,1],0,true);
-					tail1.animations.play("idle",10,true);
-
-					tail2 = createSprite("ship_tail",0.5,game.width/70);
-					tail2.animations.add("idle",[0,1],0,true);
-					tail2.animations.play("idle",10,true);
-					tail2.tint = 0x00C0FF;
-
-					tail3 = createSprite("ship_tail",0.5,game.width/70);
-					tail3.animations.add("idle",[0,1],0,true);
-					tail3.animations.play("idle",10,true);
-					tail3.tint = 0xFF4800;
-
-
-				}else{
-					tail1= createSprite("ship_tail",0.5,game.width/30);
-					tail1.animations.add("idle",[0,1],0,true);
-					tail1.animations.play("idle",10,true);
-
-					tail2 = createSprite("ship_tail",0.5,game.width/30);
-					tail2.animations.add("idle",[0,1],0,true);
-					tail2.animations.play("idle",10,true);
-					tail2.tint = 0x00C0FF;
-
-					tail3 = createSprite("ship_tail",0.5,game.width/30);
-					tail3.animations.add("idle",[0,1],0,true);
-					tail3.animations.play("idle",10,true);
-					tail3.tint = 0xFF4800;
-				}
-
-
-
-				btnShip1 = game.add.button(game.width/2,game.height,"ship_random");
-				btnShip1.anchor.setTo(0.5);
-				if(checkIsLandScape()){
-					btnShip1.ratio = btnShip1.width/(game.width/12);
-				}else{
-					btnShip1.ratio = btnShip1.width/(game.width/4);
-				}
-				btnShip1.scale.setTo(1/btnShip1.ratio);
-				tail1.reset(btnShip1.x,btnShip1.y+btnShip1.height/2);
-
-
-
-				btnShip2 = game.add.button(game.width/2,game.height,"ship_random");
-				btnShip2.anchor.setTo(0.5);
-				if(checkIsLandScape()){
-					btnShip2.ratio = btnShip2.width/(game.width/12);
-				}else{
-					btnShip2.ratio = btnShip2.width/(game.width/4);
-				}
-				btnShip2.scale.setTo(1/btnShip2.ratio);
-				btnShip2.reset(btnShip1.x-btnShip1.width -52,game.height);
-
-				tail2.reset(btnShip2.x,btnShip2.y+btnShip2.height/2);
-
-
-
-				btnShip3 = game.add.button(game.width/2,game.height,"ship_random");
-				btnShip3.anchor.setTo(0.5);
-				if(checkIsLandScape()){
-					btnShip3.ratio = btnShip3.width/(game.width/12);
-				}else{
-					btnShip3.ratio = btnShip3.width/(game.width/4);
-				}
-				btnShip3.scale.setTo(1/btnShip3.ratio);
-				btnShip3.reset(btnShip1.x+btnShip1.width +52,game.height);
-				tail3.reset(btnShip3.x,btnShip3.y+btnShip3.height/2);
-
-
-				btnShip1.tween = game.add.tween(btnShip1).to({y:game.height/2},500,"Linear",true);
-				tail1.update = function(){
-					tail1.x= btnShip1.x;
-					tail1.y = btnShip1.y+btnShip1.height/2;
-				}
-
-				btnShip2.tween = game.add.tween(btnShip2).to({y:game.height/2},800,"Linear",true);
-				tail2.update = function(){
-					tail2.x= btnShip2.x;
-					tail2.y = btnShip2.y+btnShip2.height/2;
-				}
-
-				btnShip3.tween = game.add.tween(btnShip3).to({y:game.height/2},1000,"Linear",true);
-				tail3.update = function(){
-					tail3.x= btnShip3.x;
-					tail3.y = btnShip3.y+btnShip3.height/2;
-				}
-
-				btnShip1.onInputDown.add(function(){
-					createShip(1);
-				},this);
-
-				btnShip2.onInputDown.add(function(){
-					createShip(2);
-				},this);
-
-				btnShip3.onInputDown.add(function(){
-					createShip(3);
-				},this);
-
-
-				if(hand){
-					hand.destroy(true);
-				}
-				if(checkIsLandScape()){
-					hand = createSprite("hand",0.5,game.width/20);
-					hand.reset(btnShip2.x+hand.width/2,game.height/2+hand.height/1.8);
-					
-					hand.visible=false;
-				}else{
-					hand = createSprite("hand",0.5,game.width/6);
-					hand.reset(btnShip2.x+hand.width/2,game.height/2+hand.height/1.8);
-					hand.tween = game.add.tween(hand).to({x:hand.x+hand.width/20,height:hand.height+hand.height/10},500,"Linear",true,0,-1,true);
-					hand.visible=false;
-				}
-				game.time.events.add(Phaser.Timer.SECOND * 1,function(){
-					if(hand){
-						hand.tween = game.add.tween(hand).to({x:hand.x+2*btnShip1.width+70},3000,"Linear",true,0,-1,true);
-						hand.visible=true;
-					}
-				});
-				
-				
-
-			}
+			
 
 
 			function createShip(index){
 				isSelectedShip=true;
 				createEnemy_1();
-				if(txt_choose_aircraft){
-					txt_choose_aircraft.destroy(true);
-				}
-				if(btnShip1){
-					btnShip1.destroy(true);
-				}
-				if(btnShip2){
-					btnShip2.destroy(true);
-				}
-				if(btnShip3){
-					btnShip3.destroy(true);
-				}
-				if(tail1){
-					tail1.destroy(true);
-				}
-				if(tail2){
-					tail2.destroy(true);
-				}
-				if(tail3){
-					tail3.destroy(true);
-				}
-				if(hand){
-					hand.destroy(true);
-				}
-
+		
 
 				ship = new Ship(index);
 				createHand();	
@@ -2161,23 +1961,23 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 									// bullet_1.body.body.velocity.x = -220 * dpr;
 									bullet_1.body.angle = -15*dpr;
 
-									var bullet_1 = new Bullet();
-									bullet_1.body.reset(this.body.x+this.body.sprite.width/2.5,this.body.y-this.body.sprite.height/2.9);
-									bullet_1.body.inputEnabled = true;
-									bullet_1.body.checkWorldBounds = true;
-									bulletGroup.add(bullet_1.body);
-									bullet_1.body.body.velocity.y = -1000*dpr;
-									// bullet_1.body.body.velocity.x = 220 * dpr;
-									bullet_1.body.angle = 15*dpr;
+									// var bullet_1 = new Bullet();
+									// bullet_1.body.reset(this.body.x+this.body.sprite.width/2.5,this.body.y-this.body.sprite.height/2.9);
+									// bullet_1.body.inputEnabled = true;
+									// bullet_1.body.checkWorldBounds = true;
+									// bulletGroup.add(bullet_1.body);
+									// bullet_1.body.body.velocity.y = -1000*dpr;
+									// // bullet_1.body.body.velocity.x = 220 * dpr;
+									// bullet_1.body.angle = 15*dpr;
 
-									 var bullet_1 = new Bullet();
-									bullet_1.body.reset(this.body.x-this.body.sprite.width/2.5,this.body.y-this.body.sprite.height/2.9);
-									bullet_1.body.inputEnabled = true;
-									bullet_1.body.checkWorldBounds = true;
-									bulletGroup.add(bullet_1.body);
-									bullet_1.body.body.velocity.y = -1000*dpr;
-									// bullet_1.body.body.velocity.x = -220 * dpr;
-									bullet_1.body.angle = -15*dpr;
+									//  var bullet_1 = new Bullet();
+									// bullet_1.body.reset(this.body.x-this.body.sprite.width/2.5,this.body.y-this.body.sprite.height/2.9);
+									// bullet_1.body.inputEnabled = true;
+									// bullet_1.body.checkWorldBounds = true;
+									// bulletGroup.add(bullet_1.body);
+									// bullet_1.body.body.velocity.y = -1000*dpr;
+									// // bullet_1.body.body.velocity.x = -220 * dpr;
+									// bullet_1.body.angle = -15*dpr;
                                     createGunFx(-this.body.sprite.width/3.3,-this.body.sprite.height/4);
 									createGunFx(-this.body.sprite.width/5.2,-this.body.sprite.height/2.7);
 									createGunFx(0,-this.body.sprite.height/1.8);
@@ -2355,7 +2155,7 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 							this.body.addChild(this.body.sprite);
 							this.lastPosition = {x:this.body.x, y:this.body.y};
 							// this.body.rotation = Phaser.Math.angleBetweenPoints(this.lastPosition, par.position) + 90 * Math.PI / 180;
-							this.body.hp=10;
+							this.body.hp=11;
 
 							
 
@@ -2385,7 +2185,7 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 							this.body.addChild(this.body.sprite);
 							this.lastPosition = {x:this.body.x, y:this.body.y};
 							// this.body.rotation = Phaser.Math.angleBetweenPoints(this.lastPosition, par.position) + 90 * Math.PI / 180
-							this.body.hp=10;
+							this.body.hp=15;
 							enemyGroup.add(this.body);
 						}
 						
@@ -2851,94 +2651,7 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 						background = game.add.tileSprite(0, 0, game.width, game.height, 'background');
 					}
 
-					function updateEnemyTween(){
-						// for(var i=0;i<enemyGroup.children.length;i++){
-						// 	if(enemyGroup.children){
-						// 		var enemy = enemyGroup.children[i];
-
-						// 		resizeEnemy(enemy);
-						// 	}
-						// }
-
-					}
-
-					function resetShip(){
-						if(ship.body.x!=0&&ship.body.y!=0){
-							ship.tx = beforeWidth/ship.body.x;
-							ship.ty = beforeHeight/ship.body.y;
-							ship.body.reset(ship.tx*game.width,ship.ty*game.height);
-						}
-						game.world.bringToTop(ship.body);
-						
-
-					}
-
-					function resetPower(){
-						for(var i=0;i<powerGroup.children.length;i++){
-							var power = powerGroup.children[i];
-							power.tx = beforeWidth/power.x;
-							power.ty = beforeHeight/power.y;
-							power.reset(power.tx*game.width,power.ty*game.height);
-							game.world.bringToTop(powerGroup);
-
-							resizePower(power);
-							power.body.velocity.y=100;
-						}
-						
-						game.world.bringToTop(powerGroup);
-					}
-
-					function resetMissle(){
-						for(var i=0;i<missleGroup.children.length;i++){
-							var missle = missleGroup.children[i];
-							missle.tx = beforeWidth/missle.x;
-							missle.ty = beforeHeight/missle.y;
-							missle.reset(missle.tx*game.width,missle.ty*game.height);
-							game.world.bringToTop(powerGroup);
-
-							resizeMissle(missle);
-							missle.body.velocity.y=100;
-						}
-						game.world.bringToTop(missleGroup);
-					}
-					function resizePower(power){
-						power.power_shield.destroy(true);
-						power.power.destroy(true);
-
-						if(checkIsLandScape()){
-							power.power_shield = createSprite("power_shield",0.5,game.width/25);	
-							power.power = createSprite("power",0.5,game.width/30);
-
-						}else{
-							power.power_shield = createSprite("power_shield",0.5,game.width/8);
-							power.power = createSprite("power",0.5,game.width/25);
-						}
-						power.power_shield.tween = game.add.tween(power.power_shield).to({angle:360},2000,"Linear",true,0,-1,false);
-						power.power_shield.reset(0,0);
-						power.power.reset(0,0);
-						power.addChild(power.power_shield);
-						power.addChild(power.power);
-
-					}
-
-					function resizeMissle(missle){
-						missle.missle_shield.destroy(true);
-						missle.missle.destroy(true);
-
-						if(checkIsLandScape()){
-							missle.missle_shield = createSprite("missle_shield",0.5,game.width/25);	
-							missle.missle = createSprite("missle",0.5,game.width/80);
-
-						}else{
-							missle.missle_shield = createSprite("missle_shield",0.5,game.width/8);
-							missle.missle= createSprite("missle",0.5,game.width/25);
-						}
-						missle.missle_shield.tween = game.add.tween(missle.missle_shield).to({angle:360},2000,"Linear",true,0,-1,false);
-						missle.missle_shield.reset(0,0);
-						missle.missle.reset(0,0);
-						missle.addChild(missle.missle_shield);
-						missle.addChild(missle.missle);
-					}
+					
 					function destroyBullet(){
 						for(var i=0;i<bulletGroup.children.length;i++){
 							bulletGroup.children[i].destroy(true);
