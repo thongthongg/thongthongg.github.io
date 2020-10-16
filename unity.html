@@ -1086,7 +1086,7 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 				 continuee.ratio = continuee.width/(game.width/10);
 					
 				}else{
-				continuee.ratio = play_free.width/(game.width/1);
+				continuee.ratio = play_free.width/(game.width/0.9);
 				
 				}
 				 continuee.scale.setTo(1/continuee.ratio);
@@ -1096,7 +1096,7 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 				if(checkIsLandScape()){
 					continuee.reset(game.width/2,game.height*0.8);
 				}else{
-					continuee.reset(game.width/2,game.height*0.9);
+					continuee.reset(game.width/2,game.height*0.8);
 				}
 
 				tutorial=3;
