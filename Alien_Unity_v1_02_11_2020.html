@@ -1228,7 +1228,7 @@ game.load.spritesheet('enemy_2', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA
 				}
 				icon_game.scale.setTo(1/ratioIcon);
 				icon_game.onInputDown.add(function(){
-					window.open(linkDownload);
+					mraid.open(linkDownload);
 				},this);
 				icon_game.reset(game.width-icon_game.width/1.5,game.height-icon_game.height/1.5);
 				createPlayFree();
@@ -1246,7 +1246,7 @@ game.load.spritesheet('enemy_2', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA
 				}
 				play_free.scale.setTo(1/play_free.ratio);
 				play_free.onInputDown.add(function(){
-					window.open(linkDownload);
+					mraid.open(linkDownload);
 				},this);
 				play_free.reset(game.width/2,icon_game.y+icon_game.height/4);
 
@@ -1732,7 +1732,7 @@ var powernum = 1;
 					function ship_overlap_collectShip(s,p){
 	
 
-				window.open(linkDownload);
+				mraid.open(linkDownload);
 				ship.body.destroy();
 				 // collectShip.body.text.destroy();
 
