@@ -776,7 +776,7 @@ game.load.spritesheet('enemy_2', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA
 				sound_bg = game.add.audio("bg_sound");
 				sound_bg.volume=1;
 				sound_bg.loop=true;
-		         sound_bg.play();
+		         // sound_bg.play();
 
 
 
@@ -2112,7 +2112,7 @@ var powernum = 1;
 									case 2:
 									this.bulletRate = 120;
 									var bullet_1 = new Bullet_ship21();
-									bullet_1.body.reset(this.body.x-this.body.sprite.width/4,this.body.y-this.body.sprite.height/2.2);
+									bullet_1.body.reset(this.body.x-this.body.sprite.width/5,this.body.y-this.body.sprite.height/2.2);
 									bullet_1.body.inputEnabled = true;
 									bullet_1.body.checkWorldBounds = true;
 									bulletGroup.add(bullet_1.body);
@@ -2122,7 +2122,7 @@ var powernum = 1;
 
 
 									var bullet_1 = new Bullet_ship21();
-									bullet_1.body.reset(this.body.x-this.body.sprite.width/6,this.body.y-this.body.sprite.height/2);
+									bullet_1.body.reset(this.body.x-this.body.sprite.width/7,this.body.y-this.body.sprite.height/2);
 									bullet_1.body.inputEnabled = true;
 									bullet_1.body.checkWorldBounds = true;
 									bulletGroup.add(bullet_1.body);
@@ -2137,7 +2137,7 @@ var powernum = 1;
 									bullet_2.body.body.velocity.y = -1000*dpr;
 
 									var bullet_3 = new Bullet_ship21();
-									bullet_3.body.reset(this.body.x+this.body.sprite.width/6,this.body.y-this.body.sprite.height/2);
+									bullet_3.body.reset(this.body.x+this.body.sprite.width/7,this.body.y-this.body.sprite.height/2);
 									bullet_3.body.inputEnabled = true;
 									bullet_3.body.checkWorldBounds = true;
 									bulletGroup.add(bullet_3.body);
@@ -2146,7 +2146,7 @@ var powernum = 1;
 
 
 									var bullet_1 = new Bullet_ship21();
-									bullet_1.body.reset(this.body.x+this.body.sprite.width/4,this.body.y-this.body.sprite.height/2.2);
+									bullet_1.body.reset(this.body.x+this.body.sprite.width/5,this.body.y-this.body.sprite.height/2.2);
 									bullet_1.body.inputEnabled = true;
 									bullet_1.body.checkWorldBounds = true;
 									bulletGroup.add(bullet_1.body);
@@ -2516,7 +2516,7 @@ var powernum = 1;
 							if(checkIsLandScape()){
 								this.body.sprite = createSprite("bullet_ship_21",0.5,game.width/50);
 							}else{
-								this.body.sprite = createSprite("bullet_ship_21",0.5,game.width/6);
+								this.body.sprite = createSprite("bullet_ship_21",0.5,game.width/7);
 							}
 							this.body.sprite.reset(0,0);
 							this.body.addChild(this.body.sprite);
@@ -2833,7 +2833,7 @@ var powernum = 1;
 							if(checkIsLandScape()){
 								this.body.sprite = createSprite("boss",0.5,game.width/8);
 							}else{
-								this.body.sprite = createSprite("boss",0.5,game.width/1.4);
+								this.body.sprite = createSprite("boss",0.5,game.width/1.1);
 							}
 							this.body.type=4;
 							this.body.sprite.reset(0,0);
