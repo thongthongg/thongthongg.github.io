@@ -1319,7 +1319,7 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 							this.lastTimeFire_2=0;
 						}
 						create(){
-							this.body = game.add.sprite(game.width/2,game.height*0.5,"");
+							this.body = game.add.sprite(game.width/2,game.height*0.8,"");
 							this.body.anchor.setTo(0.5);
 							if(checkIsLandScape()){
 								this.body.tail = createSprite("ship_tail",0.5,game.width/80);
@@ -1473,9 +1473,10 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 							this.body.mini_ship_2.destroy(true);
 							this.body.tail_3.destroy(true);
 							this.body.tail_2.destroy(true);
-
+                              
 							
 							if(checkIsLandScape()){
+
 								this.body.sprite = createSprite("ship",0.5,game.width/9);
 							}else{
 								this.body.sprite = createSprite("ship",0.5,game.width/2.5);
@@ -2090,6 +2091,7 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 					function Resize(){
 						if(ship){
 							ship.body.body.collideWorldBounds = false;
+
 						}
 						
 						if(game.width>0&&game.height>0){
@@ -2127,16 +2129,7 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 									resizeEnemy(enemy);
 									game.world.bringToTop(enemy.body);
 
-									// if(checkIsLandScape()){
-									// 	var margin = enemy.sprite.width/10;
-									// }else{
-									// 	var margin = enemy.sprite.width/20;
-									// }
-
-									// var offsetX = (game.width-(7*enemy.sprite.width+6*margin))/2+enemy.sprite.width/2;
-									// var offsetY = game.height/7;
-									// enemy.reset(offsetX+enemy.col*(margin+enemy.sprite.width),offsetY+enemy.row*(margin+enemy.sprite.height));
-									// // console.log(offsetX+enemy.col*(margin+enemy.sprite.width));
+								
 
 									if(checkIsLandScape()){
 										var margin = game.width/200;
@@ -2227,7 +2220,7 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 						if(ship.body.x!=0&&ship.body.y!=0){
 							ship.tx = beforeWidth/ship.body.x;
 							ship.ty = beforeHeight/ship.body.y;
-							ship.body.reset(ship.tx*game.width,ship.ty*game.height);
+							ship.body.reset(ship.tx*game.width/2,ship.ty*game.height/2);
 						}
 
 						game.world.bringToTop(ship.body);
