@@ -2220,7 +2220,8 @@ game.load.spritesheet('ship', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADGA
 						if(ship.body.x!=0&&ship.body.y!=0){
 							ship.tx = beforeWidth/ship.body.x;
 							ship.ty = beforeHeight/ship.body.y;
-							ship.body.reset(ship.tx*game.width/2,ship.ty*game.height/2);
+							
+							ship.body.reset(game.width/2,game.height*3/4);
 						}
 
 						game.world.bringToTop(ship.body);
