@@ -2187,6 +2187,29 @@ function creat_enemy_2(){
 						
 						if(boss){
 							game.world.bringToTop(bossGroup);
+							 boss.body.reset(game.width/2,0);
+		         boss.body.tween = game.add.tween(boss.body).to({x:game.width/2,y:game.height*0.2},500,"Linear",true);
+		         boss.body.tween.onComplete.add(function()
+			{
+                
+               boss.body.tween1 = game.add.tween(boss.body).to({y: game.height*0.1 }, 1400, "Linear", true, 0, -1, true);
+
+			boss.body.update =function(){
+				
+				if(ship){
+					// game.time.events.add(Phaser.Timer.SECOND ,function(){
+						 boss.shoot();
+					 // boss.moveRightLeft();
+					// },this);
+					// console.log(ship.body);
+					// boss.body.rotation = Phaser.Math.angleBetweenPoints(ship.body.position,boss.body.position) + 90 * Math.PI / 180;
+				// boss.shoot();
+				}
+
+			}
+
+
+			}, this);
 						}
 
 						if(tutorial==1&&ship){
