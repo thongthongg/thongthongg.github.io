@@ -1006,6 +1006,7 @@ game.load.audio("bg_sound","data:audio/mpeg;base64,SUQzBAAAAAABAFRYWFgAAAASAAADb
 
 
 			function createTapToPlay(){
+				
 				if(tap_to_play){
 					tap_to_play.destroy(true);
 				}
@@ -1014,9 +1015,10 @@ game.load.audio("bg_sound","data:audio/mpeg;base64,SUQzBAAAAAABAFRYWFgAAAASAAADb
 				}else{
 					tap_to_play = createSprite("tap_to_play",0.5,game.width*0.6);
 				}
-                
 
-				tap_to_play.reset(game.width/2,game.height/1.6);
+				
+					tap_to_play.reset(game.width/2,game.height/1.6);
+		
 				tap_to_play.tween = game.add.tween(tap_to_play).to({alpha:0},1000,"Linear",true,0,-1,false);
 			}
 			function createIconGame(){
@@ -1966,7 +1968,7 @@ function creat_enemy_2(){
 								// bullet2.rotation = Phaser.Math.angleBetweenPoints(bullet2.position, ship.body.position) - 90 * Math.PI / 180;
 
 								if(ship){
-									bullet2.tween = game.add.tween(bullet2).to({x:game.width*0.1,y:game.height},2000,"Linear",true);
+									bullet2.tween = game.add.tween(bullet2).to({x:game.width*0.01,y:game.height},2000,"Linear",true);
 								}
 
 
@@ -1981,7 +1983,7 @@ function creat_enemy_2(){
 								// bullet2.rotation = Phaser.Math.angleBetweenPoints(bullet2.position, ship.body.position) - 90 * Math.PI / 180;
 
 								if(ship){
-									bullet3.tween = game.add.tween(bullet3).to({x:game.width*0.9,y:game.height},2000,"Linear",true);
+									bullet3.tween = game.add.tween(bullet3).to({x:game.width*0.99,y:game.height},2000,"Linear",true);
 								}
 
                                 
@@ -2242,6 +2244,7 @@ function creat_enemy_2(){
 						if(hand){
 							game.world.bringToTop(hand);
 						}
+						
 						
 
 
