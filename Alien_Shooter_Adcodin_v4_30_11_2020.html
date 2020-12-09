@@ -1014,6 +1014,7 @@ game.load.audio("bg_sound","data:audio/mpeg;base64,SUQzBAAAAAABAFRYWFgAAAASAAADb
 				}else{
 					tap_to_play = createSprite("tap_to_play",0.5,game.width*0.6);
 				}
+                
 
 				tap_to_play.reset(game.width/2,game.height/1.6);
 				tap_to_play.tween = game.add.tween(tap_to_play).to({alpha:0},1000,"Linear",true,0,-1,false);
@@ -1108,6 +1109,10 @@ game.load.audio("bg_sound","data:audio/mpeg;base64,SUQzBAAAAAABAFRYWFgAAAASAAADb
 						var enemy = new Enemy_2();
 						
 					}
+					enemy.body.sprite.rotation = -80;
+
+					
+					enemyGroup.add(enemy.body);
 
 					if(checkIsLandScape()){
 						var marginX = -game.width/400;
@@ -1120,20 +1125,18 @@ game.load.audio("bg_sound","data:audio/mpeg;base64,SUQzBAAAAAABAFRYWFgAAAASAAADb
 						var offsetX = game.width*0.7;
 						var offsetY = game.height/2.5;
 						enemy.body.reset(offsetX+j*(marginX+game.width/20),offsetY+i*(marginY+game.width/50));
-
+                    game.add.tween(enemyGroup).to({x:-1500}, 6000, "Linear", true, 0, -1);
 						
 					}else{
 						var offsetX = game.width*0.9;
 						var offsetY = game.height/2.3;
 						enemy.body.reset(offsetX+j*(marginX+game.width/8),offsetY+i*(marginY+game.width/8));
+						 game.add.tween(enemyGroup).to({x:-1000}, 6000, "Linear", true, 0, -1);
 					}
 				
-				enemy.body.sprite.rotation = -80;
-
-					
-					enemyGroup.add(enemy.body);
+				
 					// hand_tween = game.add.tween(hand).to({x:ship.body.x-game.width/40},1000,"Linear",false,1,-1,true);
-                     game.add.tween(enemyGroup).to({x:-1500}, 6000, "Linear", true, 0, -1);
+                    
 					
 					enemy.body.col=j;
 					enemy.body.row=i;
@@ -2238,6 +2241,7 @@ function creat_enemy_2(){
 						if(hand){
 							game.world.bringToTop(hand);
 						}
+						
 
 
 					}
