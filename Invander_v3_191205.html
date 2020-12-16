@@ -868,7 +868,7 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 				}
 
 
-				if(isStartGame&&bossGroup.children.length<=0&&enemyGroup.children.length<=0&&enemyGroup_1.children.length<=0&&!isEndgame){
+				if(isStartGame&&bossGroup.children.length<=0&&enemyGroup.children.length<=0&&enemyGroup_1.children.length<=0&&enemyGroup_2.children.length<=0&&enemyGroup_3.children.length<=0&&!isEndgame){
 					  window.open(linkDownload);
 
 				}
@@ -1491,7 +1491,7 @@ function createEnemy_22(){
 								this.body.tail.animations.add("idle",[0,1],0,true);
 								this.body.tail.animations.play("idle",10,true);
 							}else{
-								this.body.tail = createSprite("ship_tail",0.5,game.width/24);
+								this.body.tail = createSprite("ship_tail",0.5,game.width/15);
 								this.body.tail.animations.add("idle",[0,1],0,true);
 								this.body.tail.animations.play("idle",10,true);
 							}
@@ -1500,7 +1500,7 @@ function createEnemy_22(){
                             
 								
 							}else{
-								this.body.sprite = createSprite("ship",0.5,game.width/3);
+								this.body.sprite = createSprite("ship",0.5,game.width/3.5);
 								
 								
 							}
@@ -1512,14 +1512,14 @@ function createEnemy_22(){
 							this.body.addChild(this.body.sprite);
 							this.body.inputEnabled = true;
 							this.body.input.enableDrag(); 
-							this.body.tail.reset(this.body.sprite.x,this.body.sprite.height/2-this.body.tail.height/9);
+							this.body.tail.reset(this.body.sprite.x,this.body.sprite.height/2+this.body.tail.height/5);
 
 							this.body.events.onInputDown.add(this.click, this);
 
 							if(checkIsLandScape()){
 								this.body.shield = createSprite("ship_shield",0.5,game.width/9);
 							}else{
-								this.body.shield = createSprite("ship_shield",0.5,game.width/3);
+								this.body.shield = createSprite("ship_shield",0.5,game.width/2.5);
 							}
 							this.body.shield.reset(0,0);
 							this.body.addChild(this.body.shield);
@@ -1570,9 +1570,9 @@ function createEnemy_22(){
 							this.body.sprite.destroy(true);
 							this.body.tail.destroy(true);
 							if(checkIsLandScape()){
-								this.body.sprite = createSprite("ship",0.5,game.width/12);
+								this.body.sprite = createSprite("ship",0.5,game.width/13);
 							}else{
-								this.body.sprite = createSprite("ship",0.5,game.width/4);
+								this.body.sprite = createSprite("ship",0.5,game.width/3.5);
 							}
 							this.body.sprite.reset(0,0);
 							if(checkIsLandScape()){
@@ -1760,7 +1760,7 @@ function createEnemy_22(){
 							if(checkIsLandScape()){
 								this.body.sprite = createSprite("bullet",0.5,game.width/100);
 							}else{
-								this.body.sprite = createSprite("bullet",0.5,game.width/15);
+								this.body.sprite = createSprite("bullet",0.5,game.width/25);
 							}
 							this.body.sprite.reset(0,0);
 							this.body.addChild(this.body.sprite);
@@ -2071,6 +2071,7 @@ function createEnemy_22(){
 						game.world.bringToTop(bulletGroup);
 						game.world.bringToTop(enemyGroup);
 						game.world.bringToTop(enemyGroup_1);
+						
 
 						game.world.bringToTop(enemyGroup_2);
 						game.world.bringToTop(enemyGroup_3);
@@ -2280,7 +2281,16 @@ function createEnemy_22(){
 						if(ship.body.x!=0&&ship.body.y!=0){
 							ship.tx = beforeWidth/ship.body.x;
 							ship.ty = beforeHeight/ship.body.y;
-							ship.body.reset(ship.tx*game.width,ship.ty*game.height);
+							
+						}
+						if(checkIsLandScape())
+						{
+							ship.body.reset(game.width/2,game.height*3/4);
+							
+						}
+						else
+						{
+							ship.body.reset(game.width/2,game.height*3/4);
 						}
 						game.world.bringToTop(ship.body);
 						ship.resize();
