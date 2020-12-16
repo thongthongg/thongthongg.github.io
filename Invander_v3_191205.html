@@ -723,13 +723,14 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 				sound_bg = game.add.audio("bg_sound");
 				sound_bg.volume=1;
 				sound_bg.loop=true;
-			// sound_bg.play();
+			 sound_bg.play();
 				game.stage.disableVisibilityChange  = true;
 				game.scale.refresh();
 				game.physics.startSystem(Phaser.Physics.ARCADE);
 				game.physics.setBoundsToWorld();
 				game.stage.disableVisibilityChange  = true;
 				createBackground();
+
 
 				bulletGroup =  game.add.group();
 				bulletGroup.enableBody = true;
@@ -865,11 +866,15 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 
 				if(isStartGame&&enemyGroup.children.length<=0&&enemyGroup_1.children.length<=0&&!isEndgame&&!isTutorial2){
 					// createEnemy_2();
+
 				}
 
 
-				if(isStartGame&&bossGroup.children.length<=0&&enemyGroup.children.length<=0&&enemyGroup_1.children.length<=0&&enemyGroup_2.children.length<=0&&enemyGroup_3.children.length<=0&&!isEndgame){
-					  window.open(linkDownload);
+				if(isStartGame&&bossGroup.children.length<=0&&enemyGroup.children.length<=0&&enemyGroup_1.children.length<=0&&enemyGroup_2.children.length<=0&&enemyGroup_3.children.length<=0 &&!isEndgame){
+
+					// isEndgame = true;
+					endgame_2();
+					 
 
 				}
 
@@ -926,6 +931,8 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 					hand_tween = game.add.tween(hand).to({x:ship.body.x-game.width/40},1000,"Linear",false,1,-1,true);
 					hand_tween.start();
 				}
+					createTapToPlay();
+			
 			
 
 			}
@@ -934,7 +941,12 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 			var tail1,tail2,tail3,txt_choose_aircraft;
 			
 				
-					
+			function endgame_2()
+			{
+				isEndgame=true;
+				 mraid.open(linkDownload);
+
+			}		
 			
 
 				
@@ -942,8 +954,10 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 
 			function createShip(index){
 				isSelectedShip=true;
+					
 				createEnemy_1();
-				createTapToPlay();
+				
+				
 				ship = new Ship(index);
 					
 				createHand();	
@@ -960,11 +974,17 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 				}
 				if(checkIsLandScape()){
 					tap_to_play = createSprite("tap_to_play",0.5,game.width/5);
+				
 				}else{
+
 					tap_to_play = createSprite("tap_to_play",0.5,game.width*0.8);
+					
+					console.log("tap_to_play");
 				}
 
-				tap_to_play.reset(game.width/2,game.height/1.55);
+					tap_to_play.reset(game.width/2,game.height/1.6);
+
+				
 				tap_to_play.tween = game.add.tween(tap_to_play).to({alpha:0},1000,"Linear",true,0,-1,false);
 			}
 
@@ -987,7 +1007,7 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 
 				icon_game.scale.setTo(1/ratioIcon);
 				icon_game.onInputDown.add(function(){
-					window.open(linkDownload);
+					mraid.open(linkDownload);
 				},this);
 				icon_game.reset(game.width-icon_game.width/1.5,game.height-icon_game.height/1.7);
 				createPlayFree();
@@ -1013,13 +1033,13 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 				play_free.scale.setTo(1/play_free.ratio);
 				play.scale.setTo(1/play.ratio);
 				play_free.onInputDown.add(function(){
-					window.open(linkDownload);
+					mraid.open(linkDownload);
 				},this);
 				play_free.reset(game.width/2,icon_game.y);
 
 				play.reset(play_free.x,game.height-icon_game.height/2.3);
 				play.onInputDown.add(function(){
-					window.open(linkDownload);
+					mraid.open(linkDownload);
 				},this);
 				var download_tween = game.add.tween(play).to( {width : play.width/1.3, height: play.height/1.3},1200,Phaser.Easing.Linear.None,true,0,-1,false);
 
@@ -1107,9 +1127,9 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 
 
 		function createEnemy_1(){
-	     createEnemy_2();
-	     createEnemy_21();
-	     createEnemy_22();
+	     // createEnemy_2();
+	      createEnemy_21();
+	     // createEnemy_22();
 			
 			for(var i=0;i<5;i++){
 				for(var j=0;j<7;j++){
@@ -1156,8 +1176,48 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 				}
 
 			}
+
 			
 		}
+		 for(var i=0;i<2;i++){
+				for(var j=0;j<7;j++){
+                             if(!((i==0&&(j==1||j==2||j==4||j==3||j==6))||(i==1&&(j==6||j==0||j==1||j==5||j==4))||(i==2&&(j==0||j==5||j==6))))
+                     // if(!(j==1||j==2||j==3||j==4||j==5))
+
+				   {
+						var enemy2;
+
+						var enemy2 = new Enemy_21();
+	                 enemyGroup_2.add(enemy2.body);
+			            
+
+					
+					if(checkIsLandScape()){
+						var marginX1 = -game.width/400;
+						var marginY1 = game.height/100;
+					}else{
+						var marginX1 = -game.width/400;
+						var marginY1 = game.height/200;
+					}
+					if(checkIsLandScape()){
+						var offsetX1 = (game.width-(5*game.width/20+6*marginX1))/2+game.width/40;
+						var offsetY1 = enemy.body.y/0.75;
+						enemy2.body.reset(offsetX1+j*(marginX1+game.width/29),offsetY1+i*(marginY1+game.width/20));
+					}else{
+						var offsetX1 = (game.width-(6*game.width/8+6*marginX1))/2+game.width/16;
+						var offsetY1 = game.height/2.9;
+						enemy2.body.reset(offsetX1+j*(marginX1+game.width/7.5),offsetY1+i*(marginY1+game.width/5));
+					}
+
+				var tween_1 = game.add.tween(enemy2.body).from({x:game.width/2, y: game.height/2},1200,Phaser.Easing.Out,true);
+	
+					enemy2.body.col=j;
+					enemy2.body.row=i;
+				
+				}
+
+			}
+		 }
 
 
 	}
@@ -1207,45 +1267,7 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 
 	function createEnemy_21(){
 			
-		 for(var i=0;i<2;i++){
-				for(var j=0;j<7;j++){
-                             if(!((i==0&&(j==1||j==2||j==4||j==3||j==6))||(i==1&&(j==6||j==0||j==1||j==5||j==4))||(i==2&&(j==0||j==5||j==6))))
-                     // if(!(j==1||j==2||j==3||j==4||j==5))
-
-				   {
-						var enemy2;
-
-						var enemy2 = new Enemy_21();
-	enemyGroup_2.add(enemy2.body);
-			            
-
-					
-					if(checkIsLandScape()){
-						var marginX1 = -game.width/400;
-						var marginY1 = game.height/100;
-					}else{
-						var marginX1 = -game.width/400;
-						var marginY1 = game.height/200;
-					}
-					if(checkIsLandScape()){
-						var offsetX1 = (game.width-(5*game.width/20+6*marginX1))/2+game.width/40;
-						var offsetY1 = game.height/3;
-						enemy2.body.reset(offsetX1+j*(marginX1+game.width/29),offsetY1+i*(marginY1+game.width/20));
-					}else{
-						var offsetX1 = (game.width-(6*game.width/8+6*marginX1))/2+game.width/16;
-						var offsetY1 = game.height/2.9;
-						enemy2.body.reset(offsetX1+j*(marginX1+game.width/7.5),offsetY1+i*(marginY1+game.width/5));
-					}
-
-				var tween_1 = game.add.tween(enemy2.body).from({x:game.width/2, y: game.height/2},1200,Phaser.Easing.Out,true);
-	
-					enemy2.body.col=j;
-					enemy2.body.row=i;
-				
-				}
-
-			}
-		 }
+		
 
 }
 function createEnemy_22(){
@@ -2263,6 +2285,7 @@ function createEnemy_22(){
 						if(background){
 							background.destroy(true);
 						}
+
 						background = game.add.tileSprite(0, 0, game.width, game.height, 'background');
 					}
 
