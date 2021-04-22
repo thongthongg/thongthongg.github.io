@@ -362,13 +362,15 @@ function createAsprite(x,y,src,anchor,scl){
 	function createVideo1()
 	{
             video = game.add.video('v_basic');
-		    video.loop=true;
+		   
 		    
 			addVideo = video.addToWorld(game.world.centerX,game.world.centerY,0.5,0.5,1,1);
 			var ratioVideo = addVideo.height/game.height;
 			addVideo.scale.setTo(1/ratioVideo);
 			
-			video.play();
+			 video.play(true);
+			  video.loop=true;
+			// addVideo.loop=true;
 
 			game.world.bringToTop(skill_3);
 			game.world.bringToTop(skill_1);
@@ -379,13 +381,14 @@ function createAsprite(x,y,src,anchor,scl){
 	function createVideo2()
 	{
             video2 = game.add.video('v_santa');
-		    video2.loop=true;
+		    
 		    
 			addVideo2 = video2.addToWorld(game.world.centerX,game.world.centerY,0.5,0.5,1,1);
 			var ratioVideo = addVideo2.height/game.height;
 			addVideo2.scale.setTo(1/ratioVideo);
 			
-			 video2.play();
+			 video2.play(true);
+			 video2.loop=true;
 
 			game.world.bringToTop(skill_3);
 			game.world.bringToTop(skill_1);
@@ -396,13 +399,14 @@ function createAsprite(x,y,src,anchor,scl){
 	function createVideo3()
 	{
             video3 = game.add.video('v_spider');
-		    video3.loop=true;
+		    
 		    
 			addVideo3 = video3.addToWorld(game.world.centerX,game.world.centerY,0.5,0.5,1,1);
 			var ratioVideo = addVideo3.height/game.height;
 			addVideo3.scale.setTo(1/ratioVideo);
 			
-			 video3.play();
+			 video3.play(true);
+			 video3.loop=true;
 
 			game.world.bringToTop(skill_3);
 			game.world.bringToTop(skill_1);
@@ -418,13 +422,14 @@ function createAsprite(x,y,src,anchor,scl){
 	function createVideo12()
 	{
                 video12 = game.add.video('v_1');
-		    video12.loop=true;
+		    
 		   
 			var addVideo1 = video12.addToWorld(game.world.centerX,game.world.centerY,0.5,0.5,1,1);
 			var ratioVideo1 = addVideo1.height/game.height;
 			addVideo1.scale.setTo(1/ratioVideo1);
 			// video12.addToWorld(0.5,0.5);
-			video12.play();
+			video12.play(true);
+			video12.loop=true;
 
 			addVideo1.inputEnabled=true;
 			 addVideo1.events.onInputDown.add(function(){
@@ -436,13 +441,14 @@ function createAsprite(x,y,src,anchor,scl){
 	function createVideo23()
 	{
                 video23= game.add.video('v_2');
-		    video23.loop=true;
+		    
 		   
 			var addVideo1 = video23.addToWorld(game.world.centerX,game.world.centerY,0.5,0.5,1,1);
 			var ratioVideo1 = addVideo1.height/game.height;
 			addVideo1.scale.setTo(1/ratioVideo1);
 			// video12.addToWorld(0.5,0.5);
-			video23.play();
+			video23.play(true);
+			video23.loop=true;
 
 			addVideo1.inputEnabled=true;
 			 addVideo1.events.onInputDown.add(function(){
@@ -454,13 +460,14 @@ function createAsprite(x,y,src,anchor,scl){
 	function createVideo34()
 	{
                 video34 = game.add.video('v_3');
-		    video34.loop=true;
+		    
 		   
 			var addVideo1 = video34.addToWorld(game.world.centerX,game.world.centerY,0.5,0.5,1,1);
 			var ratioVideo1 = addVideo1.height/game.height;
 			addVideo1.scale.setTo(1/ratioVideo1);
 			// video12.addToWorld(0.5,0.5);
-			video34.play();
+			video34.play(true);
+			video34.loop=true;
 
 			addVideo1.inputEnabled=true;
 			 addVideo1.events.onInputDown.add(function(){
