@@ -1839,14 +1839,14 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 
 									break;
 									case 2:
-									this.bulletRate = 200;
+									this.bulletRate = 150;
 										
 									var bullet_2 = new Bullet();
 									bullet_2.body.reset(this.body.x, this.body.y-this.body.sprite.height/1.4);
 									bullet_2.body.inputEnabled = true;
 									bullet_2.body.checkWorldBounds = true;
 									bulletGroup.add(bullet_2.body);
-									bullet_2.body.body.velocity.y = -1000*dpr;
+									bullet_2.body.body.velocity.y = -900*dpr;
 
 									
 
@@ -1855,14 +1855,14 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 									bullet_3.body.inputEnabled = true;
 									bullet_3.body.checkWorldBounds = true;
 									bulletGroup.add(bullet_3.body);
-									bullet_3.body.body.velocity.y = -1000*dpr;
+									bullet_3.body.body.velocity.y = -900*dpr;
 
 									var bullet_1 = new Bullet();
 									bullet_1.body.reset(this.body.x-this.body.sprite.width/7,this.body.y-this.body.sprite.height/2.5);
 									bullet_1.body.inputEnabled = true;
 									bullet_1.body.checkWorldBounds = true;
 									bulletGroup.add(bullet_1.body);
-									bullet_1.body.body.velocity.y = -1000*dpr;
+									bullet_1.body.body.velocity.y = -900*dpr;
 
 
 
