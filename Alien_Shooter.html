@@ -799,6 +799,16 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 				enemyGroup4.enableBody = true;
 				enemyGroup4.physicsBodyType = Phaser.Physics.ARCADE;
 				enemyGroup4.setAll("outOfBoundsKill",true);
+
+				enemyGroup5 =  game.add.group();
+				enemyGroup5.enableBody = true;
+				enemyGroup5.physicsBodyType = Phaser.Physics.ARCADE;
+				enemyGroup5.setAll("outOfBoundsKill",true);
+
+				enemyGroup6 =  game.add.group();
+				enemyGroup6.enableBody = true;
+				enemyGroup6.physicsBodyType = Phaser.Physics.ARCADE;
+				enemyGroup6.setAll("outOfBoundsKill",true);
 				
 
 
@@ -822,11 +832,13 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 
 				juicy = game.plugins.add(new Phaser.Plugin.Juicy (this));
 				par = game.add.sprite(game.width/2,game.height/2,"");
-				// createEnemy_2();
+				createEnemy_2();
 				createEnemy_6();
 				createEnemy_7();
 		
 		 createEnemy_4();
+		
+		 	
 				
 				var timeCount = 25;
 
@@ -1075,10 +1087,10 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 		var enemy_tween;
 		function createEnemy_1(){
 			
-			for(var i=0;i<6;i++){
-				for(var j=0;j<7;j++){
+			for(var i=0;i<5;i++){
+				for(var j=0;j<3;j++){
 
-					if(!((i==0&&(j==0||j==3||j==6))||(i==1&&(j==1||j==2||j==4||j==5))||(i==2&&(j==1||j==2||j==4||j==5||j==3))||(i==3&&(j==0||j==6||j==2||j==3||j==4))||(i==4&&(j==0||j==1||j==5||j==6||j==3))||(i==5&&(j==0||j==1||j==2||j==4||j==5||j==6))
+					if(!((i==0&&(j==0||j==3||j==6))||(i==1&&(j==1||j==2||j==4||j==5))||(i==2&&(j==1||j==2||j==4||j==5||j==3))||(i==3&&(j==0||j==6||j==2||j==3||j==4))||(i==4&&(j==0||j==1||j==5||j==6||j==3))
 
 						)){
 						var enemy;
@@ -1088,6 +1100,7 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 					}else{
 						var enemy = new Enemy_3();
 					}
+					enemyGroup5.add(enemy.body);
 					if(checkIsLandScape()){
 						var marginX = -game.width/400;
 						var marginY = game.height/100;
@@ -1096,30 +1109,39 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 						var marginY = game.height/200;
 					}
 					if(checkIsLandScape()){
-						var offsetX = (game.width-(6*game.width/20+6*marginX))/2+game.width/40;
+						var offsetX = game.width*0.3;
 						var offsetY = game.height/11;
+
 						enemy.body.reset(offsetX+j*(marginX+game.width/25),offsetY+i*(marginY+game.width/36));
+
+						var tween1=game.add.tween(enemyGroup5).to({x:(game.width*0.075)}, 600,"Linear", true);
 					}else{
-						var offsetX = (game.width-(7*game.width/8+6*marginX))/2+game.width/16;
+						var offsetX = 0;
 						var offsetY = game.height/9;
 						enemy.body.reset(offsetX+j*(marginX+game.width/8),offsetY+i*(marginY+game.width/10));
+						var tween1=game.add.tween(enemyGroup5).to({x:(game.width*0.15)}, 600,"Linear", true);
 					}
 					
 					enemy.body.col=j;
 					enemy.body.row=i;
 					// var tween_1= game.add.tween(enemy.body).from( {x: game.width/2 , y: game.height/2 }, 1200, Phaser.Easing.Out, true);
+					// var tween_2 = game.add.tween(enemy.body).from({x: game.width/2, y: game.height/4},1200,Phaser.Easing.Out,true)
+
+
 				}
 
 			}
 		}
-		   createEnemy_11();
+		  createEnemy_11();
+		  createEnemy_12();
+		createEnemy_13();
 
 	}
 
 	function createEnemy_11(){
 			
-			for(var i=0;i<4;i++){
-				for(var j=0;j<5;j++){
+			for(var i=0;i<3;i++){
+				for(var j=0;j<2;j++){
 					
 
 					if(!((i==0&&(j==2))||(i==2&&(j==0||j==4)||(i==3&&(j==0||j==1||j==3||j==4)))
@@ -1139,14 +1161,18 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 						var marginX = -game.width/400;
 						var marginY = game.height/200;
 					}
+					 enemyGroup5.add(enemy.body);
 					if(checkIsLandScape()){
-						var offsetX = (game.width-(4.4*game.width/20+6*marginX))/2+game.width/40;
+						var offsetX = game.width*0.34;
 						var offsetY = game.height/6;
 						enemy.body.reset(offsetX+j*(marginX+game.width/26),offsetY+i*(marginY+game.width/40));
+						 var tween1=game.add.tween(enemyGroup5).to({x:(game.width*0.075)}, 600,"Linear", true);
 					}else{
-						var offsetX = (game.width-(5*game.width/8+6*marginX))/2+game.width/16;
-						var offsetY = game.height/6;
+						var offsetX =game.width*0.12;
+						var offsetY = game.height/5.7;
 						enemy.body.reset(offsetX+j*(marginX+game.width/8),offsetY+i*(marginY+game.width/10));
+						// var tween1=game.add.tween(enemyGroup5).to({x:(game.width*3)}, 600,"Linear", true);
+						console.log("updateEnemyTween2");
 					}
 					
 					enemy.body.col=j;
@@ -1156,8 +1182,103 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 
 			}
 		}
+		
 
 	}
+
+	function createEnemy_12(){
+			
+			for(var i=0;i<6;i++){
+				for(var j=0;j<4;j++){
+
+					if(!((i==0&&(j==0||j==3))||(i==3&&(j==3||j==0||j==1))||(i==4&&(j==2||j==3||j==0))||(i==5&&(j==1||j==2||j==3))||(i==1&&(j==1||j==2))||(i==2&&(j==0||j==1||j==2))
+
+						)){
+						var enemy;
+					if(j%2==0){
+
+						var enemy = new Enemy_3();
+					}else{
+						var enemy = new Enemy_3();
+					}
+					if(checkIsLandScape()){
+						var marginX = -game.width/400;
+						var marginY = game.height/100;
+					}else{
+						var marginX = -game.width/400;
+						var marginY = game.height/200;
+					}
+					enemyGroup6.add(enemy.body);
+					if(checkIsLandScape()){
+						var offsetX =game.width*0.6;
+						var offsetY = game.height/11;
+						enemy.body.reset(offsetX+j*(marginX+game.width/25),offsetY+i*(marginY+game.width/36));
+						var tween2=game.add.tween(enemyGroup6).to({x:(-game.width*0.11)}, 600,"Linear", true);
+					}else{
+						var offsetX = game.width;
+						var offsetY = game.height/9;
+						enemy.body.reset(offsetX+j*(marginX+game.width/8),offsetY+i*(marginY+game.width/10));
+					}
+					
+					enemy.body.col=j;
+					enemy.body.row=i;
+					
+					
+				}
+
+			}
+		}
+		 
+
+	}
+
+	function createEnemy_13(){
+			
+			for(var i=0;i<4;i++){
+				for(var j=0;j<3;j++){
+					
+
+					if(!((i==0&&(j==0))||(i==2&&(j==2)||(i==3&&(j==1||j==2)))
+
+						)){
+						var enemy;
+					if(j%2==0){
+
+						var enemy = new Enemy_11();
+					}else{
+						var enemy = new Enemy_11();
+					}
+					if(checkIsLandScape()){
+						var marginX = -game.width/400;
+						var marginY = game.height/100;
+					}else{
+						var marginX = -game.width/400;
+						var marginY = game.height/200;
+					}
+					 enemyGroup6.add(enemy.body);
+					if(checkIsLandScape()){
+						var offsetX = game.width*0.6;
+						var offsetY = game.height/6;
+						enemy.body.reset(offsetX+j*(marginX+game.width/26),offsetY+i*(marginY+game.width/40));
+						 var tween2=game.add.tween(enemyGroup6).to({x:-game.width*0.11}, 600,"Linear", true);
+					}else{
+						var offsetX = game.width;
+						var offsetY = game.height/5.7;
+						enemy.body.reset(offsetX+j*(marginX+game.width/8),offsetY+i*(marginY+game.width/10));
+						 var tween2=game.add.tween(enemyGroup6).to({x:-game.width/2.1}, 600,"Linear", true);
+					}
+					
+					enemy.body.col=j;
+					enemy.body.row=i;
+					// var tween_1= game.add.tween(enemy.body).from( {x: game.width/2 , y: game.height/2 }, 1200, Phaser.Easing.Out, true);
+				}
+
+			}
+		}
+		
+
+	}
+
 		
 		
 
@@ -2038,7 +2159,7 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 							if(checkIsLandScape()){
 								this.body.sprite = createSprite("enemy_3",0.5,game.width/22);
 							}else{
-								this.body.sprite = createSprite("enemy_3",0.5,game.width/8);
+								this.body.sprite = createSprite("enemy_3",0.5,game.width/7);
 							}
 							this.body.type=2;
 							this.body.sprite.reset(0,0);
@@ -2141,6 +2262,8 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 						 game.world.bringToTop(enemyGroup2);
 						game.world.bringToTop(enemyGroup3);
 						game.world.bringToTop(enemyGroup4);
+							game.world.bringToTop(enemyGroup5);
+								game.world.bringToTop(enemyGroup6);
 
 						game.world.bringToTop(powerGroup);
 						game.world.bringToTop(bulletEnemyGroup);
